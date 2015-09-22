@@ -1,0 +1,39 @@
+from pylab import arange
+from elementDefinition import *
+
+def simulationInit():
+	NumOfElements = 1
+	Elements = [FluidElement() for i in range(NumOfElements)]
+
+	for i in range(NumOfElements):
+		Elements[i] = Vortex(5*1j)
+
+	return Elements
+
+def boundaryCondInit():
+	C = 3
+	Z = [i for i in range(C)]
+	return Z	
+
+class simulationParam():
+	dt       = 0.01
+	SimTime  = 2
+	TimeStep = arange(0, SimTime, dt)
+	PathPlot = 0
+	SystemStatic  = 1
+
+def EulerPositionUpdate(Elements, Field, NumOfElements, dt):	
+	for i in range(NumOfElements):
+		if (Elements[i].fixed == 0):
+			for j in range(NumOfElements):
+				Elements[i].xy += Field[j][i]*dt
+	
+	return Elements
+
+def RKPositionUpdate(Elements, FieldRK, FieldEuler, NumOfElements, dt):	
+	for i in range(NumOfElements):
+		if (Elements[i].fixed == 0):
+			for j in range(NumOfElements):
+				Elements[i].updatexy += FieldRK[j][i]*dt/2 + FieldEuler[j][i]*dt/2 
+	
+	return Elements

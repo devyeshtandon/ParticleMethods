@@ -1,0 +1,27 @@
+import pylab
+
+def plotInit():
+	pylab.ion()
+	graph, = pylab.plot(1, 'ro', markersize = 6) 
+	pylab.axis([-6,6,6,-6])
+
+	graph.set_xdata(0)
+	graph.set_ydata(0)
+	pylab.draw()
+	return graph
+
+def plotData(X, Y, Graph):
+	Graph.set_xdata(X)
+	Graph.set_ydata(Y)
+	pylab.draw()
+
+def plotPathLine(Elements, Graph, X, Y):
+	X.extend(i.xy.real for i in Elements)
+	Y.extend(i.xy.imag for i in Elements)
+	plotData(X, Y, Graph)	
+
+def plotParticles(Elements, Graph):
+
+	X = [i.xy.real for i in Elements]
+	Y = [i.xy.imag for i in Elements]
+	plotData(X, Y, Graph)

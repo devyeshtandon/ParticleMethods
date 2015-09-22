@@ -1,0 +1,68 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CalculateField	elementDefinition.py	/^def CalculateField(Elements, Panels):$/;"	f
+EulerPositionUpdate	simulation.py	/^def EulerPositionUpdate(Elements, Field, NumOfElements, dt):	$/;"	f
+FluidElement	elementDefinition.py	/^class FluidElement:$/;"	c
+PanelSheet	PanelDefinitions.py	/^class PanelSheet():$/;"	c
+PathPlot	simulation.py	/^	PathPlot = 1$/;"	v	class:simulationParam
+RKPositionUpdate	simulation.py	/^def RKPositionUpdate(Elements, FieldRK, FieldEuler, NumOfElements, dt):	$/;"	f
+SimTime	simulation.py	/^	SimTime  = 5$/;"	v	class:simulationParam
+SystemStatic	simulation.py	/^	SystemStatic  = 1$/;"	v	class:simulationParam
+TimeStep	simulation.py	/^	TimeStep = arange(0, SimTime, dt)$/;"	v	class:simulationParam
+Tracer	elementDefinition.py	/^class Tracer(FluidElement):$/;"	c
+Uniform	elementDefinition.py	/^class Uniform(FluidElement):$/;"	c
+UniformPolygon	geometryGenerate.py	/^def UniformPolygon(NumOfSides, Radius):$/;"	f
+UpdatePanels	panelMethod.py	/^def UpdatePanels(Panels, InvA, b):$/;"	f
+Vortex	elementDefinition.py	/^class Vortex(FluidElement):$/;"	c
+VortexPanel	elementDefinition.py	/^class VortexPanel(FluidElement):$/;"	c
+__init__	PanelDefinitions.py	/^	def __init__(self, loc1, loc2):$/;"	m	class:PanelSheet
+__init__	elementDefinition.py	/^	def __init__(self, loc):$/;"	m	class:Tracer
+__init__	elementDefinition.py	/^	def __init__(self, loc):$/;"	m	class:Uniform
+__init__	elementDefinition.py	/^	def __init__(self, loc):$/;"	m	class:Vortex
+__init__	elementDefinition.py	/^	def __init__(self, loc1, loc2):$/;"	m	class:VortexPanel
+boundaryCondInit	simulation.py	/^def boundaryCondInit():$/;"	f
+delta	mainCode1.py	/^def delta(x):$/;"	f
+dt	simulation.py	/^	dt       = 0.01$/;"	v	class:simulationParam
+en	PanelDefinitions.py	/^	en = 0$/;"	v	class:PanelSheet
+en	elementDefinition.py	/^	en = 0$/;"	v	class:VortexPanel
+fieldValue	elementDefinition.py	/^	def fieldValue(self, target):$/;"	m	class:Tracer
+fieldValue	elementDefinition.py	/^	def fieldValue(self, target):$/;"	m	class:Uniform
+fieldValue	elementDefinition.py	/^	def fieldValue(self, target):$/;"	m	class:Vortex
+fieldValue	elementDefinition.py	/^	def fieldValue(self, z):$/;"	m	class:VortexPanel
+fixed	elementDefinition.py	/^	fixed    = 0;$/;"	v	class:FluidElement
+length	elementDefinition.py	/^	length = 1;$/;"	v	class:VortexPanel
+magnitude	elementDefinition.py	/^	def magnitude(self, target):$/;"	m	class:Uniform
+magnitude	elementDefinition.py	/^	def magnitude(self, target):$/;"	m	class:Vortex
+matAValue	elementDefinition.py	/^	def matAValue(self, z):$/;"	m	class:VortexPanel
+matBGen	panelMethod.py	/^def matBGen(Elements, Panels, geometry):$/;"	f
+matInvAGen	panelMethod.py	/^def matInvAGen(geometry, Panels):$/;"	f
+panelGeometry	panelMethod.py	/^def panelGeometry(NoOfPanels, geometry):$/;"	f
+panelPlot	Plotting.py	/^def panelPlot(Panels):$/;"	f
+plotData	Plotting.py	/^def plotData(X, Y, Graph):$/;"	f
+plotInit	Plotting.py	/^def plotInit():$/;"	f
+plotParticles	Plotting.py	/^def plotParticles(Elements, Panels, Graph):$/;"	f
+plotPathLine	Plotting.py	/^def plotPathLine(Elements, Panels, Graph, X, Y):$/;"	f
+radDirection	elementDefinition.py	/^	def radDirection(self, target):$/;"	m	class:FluidElement
+reinitialize	elementDefinition.py	/^	def reinitialize(self):$/;"	m	class:VortexPanel
+simulationInit	simulation.py	/^def simulationInit(delta):$/;"	f
+simulationParam	simulation.py	/^class simulationParam():$/;"	c
+strength	elementDefinition.py	/^	strength = 1;$/;"	v	class:FluidElement
+strength1	PanelDefinitions.py	/^	strength1 = 1$/;"	v	class:PanelSheet
+strength1	elementDefinition.py	/^	strength1 = 1$/;"	v	class:VortexPanel
+strength2	PanelDefinitions.py	/^	strength2 = 1$/;"	v	class:PanelSheet
+strength2	elementDefinition.py	/^	strength2 = 1$/;"	v	class:VortexPanel
+tanDirection	elementDefinition.py	/^	def tanDirection(self, target):$/;"	m	class:FluidElement
+theta	PanelDefinitions.py	/^	theta = 0$/;"	v	class:PanelSheet
+theta	elementDefinition.py	/^	theta = 0$/;"	v	class:VortexPanel
+update	elementDefinition.py	/^	def update(self):$/;"	m	class:FluidElement
+updatexy	elementDefinition.py	/^	updatexy = xy;$/;"	v	class:FluidElement
+velocity	PanelDefinitions.py	/^	def velocity(self, z):$/;"	m	class:PanelSheet
+xy	elementDefinition.py	/^	xy       = 0;$/;"	v	class:FluidElement
+z1	PanelDefinitions.py	/^	z1 = 0$/;"	v	class:PanelSheet
+z1	elementDefinition.py	/^	z1 = 0$/;"	v	class:VortexPanel
+z2	PanelDefinitions.py	/^	z2 = 0$/;"	v	class:PanelSheet
+z2	elementDefinition.py	/^	z2 = 0$/;"	v	class:VortexPanel

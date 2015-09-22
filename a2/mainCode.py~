@@ -1,0 +1,33 @@
+from Plotting import *
+from simulation import *
+
+Elements = simulationInit()
+NumOfElements = len(Elements)
+
+SimData = simulationParam()
+
+Graph = plotInit()
+
+if SimData.PathPlot == 1:
+	X = []
+	Y = []
+
+for t in SimData.TimeStep:	
+
+	FieldEuler = CalculateField(Elements, NumOfElements)
+	Elements = EulerPositionUpdate(Elements, FieldEuler, NumOfElements, SimData.dt)
+
+	FieldRK2 = CalculateField(Elements, NumOfElements)
+	Elements = RKPositionUpdate(Elements, FieldRK2, FieldEuler, NumOfElements, SimData.dt)
+
+#	print FieldEuler
+#	print FieldRK2
+	[i.update() for i in Elements]
+
+	if SimData.PathPlot == 1:
+		plotPathLine(Elements, Graph, X, Y);
+	else:
+		plotParticles(Elements, Graph);
+#	print abs(Elements[0].xy)
+raw_input()
+

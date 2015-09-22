@@ -1,0 +1,14 @@
+from elementDefinition import *
+import cmath
+
+Z = [i for i in range(3)]
+
+for i in range(2):
+	Element[i] = PanelSheet(Z[i], Z[i+1]) 
+
+MP = [(i+0.5) for i in range(2)]
+
+# Matrix A formation
+X[i] = Element.matAValue(mp)
+
+
