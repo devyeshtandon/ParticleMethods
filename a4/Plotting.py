@@ -17,8 +17,7 @@ def plotInit(Plotting, Elements):
 
 		pylab.ion()
 		fig, ax = pylab.subplots(1,1)
-		graph = ax.quiver(X, Y, U, V, scale=1/0.01)
-#		pylab.axis([-2, 2, -2, 2])
+		graph = ax.quiver(X, Y, U, V)
 		pylab.draw()
 	else:
 		pylab.ion()
@@ -58,18 +57,18 @@ def plotParticles(Elements, Panels, Graph):
 	plotData(X, Y, Graph)
 	panelPlot(Panels)
 
-def plotQuiver(fieldValue1, fieldValue2, graph, dim):
-
+def plotQuiver(fieldValue1, fieldValue2, graph, dim, allElements, Panels):
+	panelPlot(Panels)
 	vel = zeros(dim)*1j
 
 	for i in range(dim):
-		for j in range(dim+1):
+		for j in range(allElements):
 			vel[i] += (fieldValue1[j][i] + fieldValue2[j][i])/2
 
 	u = [i.real for i in vel]
 	v = [i.imag for i in vel]
 
-	dim = 9
+	dim =20
 	U = zeros([dim, dim])
 	V = zeros([dim, dim])
 
@@ -78,7 +77,5 @@ def plotQuiver(fieldValue1, fieldValue2, graph, dim):
 			U[i][j] = u[j*dim + i]
 			V[i][j] = v[j*dim + i]
 
-	print (U)
 	graph.set_UVC(U, V)
 	pylab.draw()
-	raw_input()

@@ -5,6 +5,11 @@ from diffusion import FetchControlPoints, NoSlipCondition, DiffuseBlobs
 from numpy import append
 
 Elements = simulationInit()
+#quiverElements = quiverPlot();
+#numOfQE = len(quiverElements)
+
+#Elements = append(quiverElements, Elements)
+
 NumOfElements = len(Elements)
 
 SimData = simulationParam()
@@ -23,6 +28,29 @@ if SimData.Plotting == 1:
 controlPoints = FetchControlPoints(Panels)
 NumOfCP = len(controlPoints)
 
+def numericalIntegration(allElements, Panels, dt):
+	lenAllElements = len(allElements)
+
+	FieldEuler = CalculateField(allElements, Panels)
+	allElements = EulerPositionUpdate(allElements, FieldEuler, lenAllElements, dt)	
+	b = matBGen(allElements, Panels, Bound)	#update b in midterms
+	Panels = UpdatePanels(Panels, InvA, b);	#update strengths in midterms
+	FieldRK2 = CalculateField(allElements, Panels)
+	allElements = RKPositionUpdate(allElements, FieldRK2, FieldEuler, lenAllElements, dt)
+
+	return allElements, FieldRK2, FieldEuler
+
+
+def PanelUpdate(Elements, Panels, Bound, InvA):
+	# Genrate b Matrix
+	b = matBGen(Elements, Panels, Bound)
+
+	# Update Panels with resp. strength
+	Panels = UpdatePanels(Panels, InvA, b);	
+
+
+	return Panels
+
 for t in SimData.TimeStep:	
 
 	if (SimData.SystemStatic == 0):
@@ -35,20 +63,11 @@ for t in SimData.TimeStep:
 
 	#append CP with elements to treat CPs as Tracers
 	allElements = append(Elements, controlPoints)  
-	lenAllElements = len(allElements)
-	# Genrate b Matrix
-	b = matBGen(Elements, Panels, Bound)
 
-	# Update Panels with resp. strength
-	Panels = UpdatePanels(Panels, InvA, b);	
+	Panels = PanelUpdate(Elements, Panels, Bound, InvA)
+	allElements, FieldRK2, FieldEuler = numericalIntegration(allElements, Panels, SimData.dt)
 
-	#Calculate the Velocities using RK2
-	FieldEuler = CalculateField(allElements, Panels)
-	allElements = EulerPositionUpdate(allElements, FieldEuler, lenAllElements, SimData.dt)	
-	b = matBGen(allElements, Panels, Bound)	#update b in midterms
-	Panels = UpdatePanels(Panels, InvA, b);	#update strengths in midterms
-	FieldRK2 = CalculateField(allElements, Panels)
-	allElements = RKPositionUpdate(allElements, FieldRK2, FieldEuler, lenAllElements, SimData.dt)
+
 
 	# Remove appended CP with elements
 	Elements = allElements[:NumOfElements]
@@ -60,25 +79,25 @@ for t in SimData.TimeStep:
 ####### DIFFUSION  ##########################################################################
 	
 	# Generate Vortex Blobs to impose no slip condition
-	vortexBlobs = NoSlipCondition(Bound, FieldRK2, FieldEuler, NumOfCP)
-	# Diffuse blobs using random walk
+	vortexBlobs = NoSlipCondition(Bound, controlPoints, NumOfCP, SimData.dt)
 
+	# Diffuse blobs using random walk
 	vortexBlobs = DiffuseBlobs(vortexBlobs, SimData.dt, Bound)
 
 	# Append Blobs to the elements
 	Elements = append(Elements, vortexBlobs)
 
 ####### PLOTTING ###########################################################################
+	controlPoints = FetchControlPoints(Panels)
 
 	if SimData.Plotting == 1:
 		plotPathLine(Elements, Panels, Graph, X, Y)
 	elif SimData.Plotting == 0:
 		plotParticles(Elements, Panels, Graph)
 	elif SimData.Plotting == 2:
-		NumOfTracers = NumOfElements-1
-		plotQuiver(FieldRK2, FieldEuler, Graph, NumOfTracers)
+		plotQuiver(FieldRK2, FieldEuler, Graph, numOfQE, NumOfElements, Panels)
 
-
-raw_input()
+	print NumOfElements	
+	raw_input()
 
 

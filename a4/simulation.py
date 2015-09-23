@@ -47,8 +47,8 @@ def simulationInit():
 	return Elements
 
 def quiverPlot():
-        x = arange(-2, 2.5, 0.2)
-        y = arange(-2, 2.5, 0.2)
+        x = arange(-2, 2, 0.2)
+        y = arange(-2, 2, 0.2)
         gridLength = len(x)
 
         NumOfElements = gridLength**2
@@ -66,7 +66,7 @@ def boundaryCondInit():
 	return Z	
 
 class simulationParam():
-	dt       = 0.05
+	dt       = 0.1
 	SimTime  = 5
 	TimeStep = arange(0, SimTime, dt)
 	Plotting = 0

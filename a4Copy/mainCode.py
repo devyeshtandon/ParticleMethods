@@ -10,7 +10,7 @@ Bound   = boundaryCondInit()
 
 NumOfPanels = len(Bound)-1
 Panels  = panelGeometry(NumOfPanels, Bound)
-InvA = matInvAGen(Bound, Panels);
+A = matInvAGen(Bound, Panels);
 
 Graph = plotInit(SimData.Plotting, Elements)
 
@@ -25,17 +25,17 @@ for t in SimData.TimeStep:
 # Advection
 	if (SimData.SystemStatic == 0):
 		Panels  = panelGeometry(len(Bound))
-		InvA = matInvAGen(Bound, Panels)
+		A = matInvAGen(Bound, Panels)
 	
 	b = matBGen(Elements, Panels, Bound)	
 
-	Panels = UpdatePanels(Panels, InvA, b);	
+	Panels = UpdatePanels(Panels, A, b);	
 
 	FieldEuler = CalculateField(Elements, Panels)
 	Elements = EulerPositionUpdate(Elements, FieldEuler, NumOfElements, SimData.dt)
 	b = matBGen(Elements, Panels, Bound)	
 
-	Panels = UpdatePanels(Panels, InvA, b);	
+	Panels = UpdatePanels(Panels, A, b);	
 
 	FieldRK2 = CalculateField(Elements, Panels)
 	Elements = RKPositionUpdate(Elements, FieldRK2, FieldEuler, NumOfElements, SimData.dt)
@@ -45,6 +45,8 @@ for t in SimData.TimeStep:
 # Diffusion
 #	slipVelocities = CalculateVSlip(Panels)
 
+#	print FieldEuler
+#	print FieldRK2
 
 	if SimData.Plotting == 1:
 		plotPathLine(Elements, Panels, Graph, X, Y)
@@ -52,9 +54,9 @@ for t in SimData.TimeStep:
 		plotParticles(Elements, Panels, Graph)
 	elif SimData.Plotting == 2:
 		NumOfTracers = NumOfElements-1
-		plotQuiver(FieldRK2, FieldEuler, Graph, NumOfTracers)
+		plotQuiver(FieldRK2, FieldEuler, Graph, NumOfTracers, Panels)
 		
 
-#	raw_input()
+	raw_input()
 
 

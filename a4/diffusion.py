@@ -12,31 +12,29 @@ def FetchControlPoints(Panel):
 		temp = (Panel[i].z1 + Panel[i].z2)/2
 		temp = temp/abs(temp)*1.01
 		controlPoint[i] = Tracer(temp)
-		controlPoint[i].fixed = 1
+		controlPoint[i].fixed = 0
 
 	return controlPoint
 
-def NoSlipCondition(Boundary, field1, field2, length):
-	dim = shape(field1)
-
-	dim =  dim[0]
+def NoSlipCondition(Boundary, controlPoints, length, dt):
+	dim = len(controlPoints)
+#	print dimi
+#	raw_input()
 	
 	lambdaLen = abs(Boundary[2]-Boundary[1])	
 	deltaVal = lambdaLen/pi
 
-	vortexBlob = [FluidElement() for i in range(length)]
-	for i in range(dim-length, dim):
-		vslip = 0
-		counter = i-dim+length
-                for j in range(dim):
-			vslip += (field1[j][i] + field2[j][i])/2
-		mp = (Boundary[counter+1] + Boundary[counter])/2
-		er = (Boundary[counter+1] - Boundary[counter])
+	vortexBlob = [FluidElement() for i in range(dim)]
+	for i in range(dim):
+		vslip = (controlPoints[i].updatexy - controlPoints[i].lastpos)/dt
+		mp = (Boundary[i+1] + Boundary[i])/2
+		er = (Boundary[i+1] - Boundary[i])
 		en = (er)/abs(er)
-		gamma = (vslip.real*en.real + vslip.imag*en.imag)*lambdaLen
-		vortexBlob[counter] = Vortex(mp*(abs(mp)+deltaVal)/abs(mp))
-		vortexBlob[counter].strength = gamma
-		vortexBlob[counter].delta = deltaVal
+		gamma = -(vslip.real*en.real + vslip.imag*en.imag)*lambdaLen
+		print gamma
+		vortexBlob[i] = Vortex(mp*(abs(mp)+deltaVal)/abs(mp))
+		vortexBlob[i].strength = gamma
+		vortexBlob[i].delta = deltaVal
 
 	return vortexBlob
 
@@ -106,8 +104,8 @@ def DiffuseBlobs(vortexBlobs, time, boundary):
 
 	for i in range(numOfVortexBlobs):
 		try:
-			x = random.normal(0, sigma, numOfDaughterBlobs[i])
-			y = random.normal(0, sigma, numOfDaughterBlobs[i])*1.0j
+			x = sigma*random.randn(numOfDaughterBlobs[i])
+			y = sigma*random.randn(numOfDaughterBlobs[i])*1.0j
 		except:
 			x = 0
 			y = 0

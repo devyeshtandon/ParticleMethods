@@ -27,21 +27,21 @@ def matInvAGen(geometry, Panels):
 				A[i,j] += temp[0]
 
 	A[ArrSize,:] = 1
-#	print A
+	print "printing"
+	print A
 	invA = np.linalg.pinv(A)
-#	print invA
-	return invA
+	return A
 
 def matBGen(Elements, Panels, geometry):
 	GeoLen = len(geometry)
 	MidPts = [1.0*(geometry[i] + geometry[i+1])/2 for i in range(GeoLen-1)]
 	
 	ArrSize = len(MidPts)
-	b = np.zeros(shape = (ArrSize+1, 1), dtype = complex)
+	b = np.zeros(shape = (ArrSize+1, 1))*1.0j
 	for j in range(ArrSize):
 		for i in range(len(Elements)):
-
 			b[j,0] += Elements[i].fieldValue(MidPts[j])
+
 	for j in range(len(MidPts)):
 		b[j, 0] = b[j,0].real*Panels[j].en.real + b[j,0].imag*Panels[j].en.imag
 	b[ArrSize,:] = 0
@@ -49,10 +49,9 @@ def matBGen(Elements, Panels, geometry):
 	return b	
 
 def UpdatePanels(Panels, InvA, b):
-	X = np.dot(InvA, b)
-#	print 'b'
-#	print X
-#	print 'yo'
+	X = np.linalg.lstsq(InvA, b)
+	X =  X[:][0]
+
 	for i in range(len(Panels)):
 		try:
 			Panels[i].strength1 = X[i,0]

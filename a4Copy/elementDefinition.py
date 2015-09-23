@@ -95,7 +95,7 @@ class VortexPanel(FluidElement):
 		self.length = abs(loc1-loc2)
 
 	def matAValue(self, z):
-		temp = (z-self.z1)*exp(-self.theta*1j)
+		temp = (z-self.z1)*exp((-self.theta  )*1j)
 		x = self.length/temp
 		v1 = -1.0j/2/pi*((1.0/x - 1)*log(1-x) + 1)
 		v1 = (v1.imag)
@@ -108,6 +108,8 @@ class VortexPanel(FluidElement):
 		if temp == 0:
 			return 0
 		x = self.length/temp		
+		if x == 1 + 0*1j:
+			return 0	
 		v1 = np.conjugate(-1.0j/2/pi*((1.0/x - 1)*log(1-x) + 1))*exp(self.theta*1j)
 		v2 = np.conjugate(1.0j/2/pi*((1.0/x)*log(1-x) + 1))*exp(self.theta*1j)
 

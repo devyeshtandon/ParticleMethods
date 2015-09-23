@@ -6,22 +6,27 @@
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
 Bound	mainCode.py	/^Bound   = boundaryCondInit()$/;"	v
 CalculateField	elementDefinition.py	/^def CalculateField(Elements, Panels):$/;"	f
-Elements	mainCode.py	/^	Elements = EulerPositionUpdate(Elements, FieldEuler, NumOfElements, SimData.dt)$/;"	v
-Elements	mainCode.py	/^	Elements = RKPositionUpdate(Elements, FieldRK2, FieldEuler, NumOfElements, SimData.dt)$/;"	v
+CheckReflection	diffusion.py	/^def CheckReflection(bound1, bound2, location):$/;"	f
+DiffuseBlobs	diffusion.py	/^def DiffuseBlobs(vortexBlobs, time, boundary):$/;"	f
+Elements	mainCode.py	/^	Elements = allElements[:NumOfElements]$/;"	v
+Elements	mainCode.py	/^	Elements = append(Elements, vortexBlobs)$/;"	v
 Elements	mainCode.py	/^Elements = simulationInit()$/;"	v
 EulerPositionUpdate	simulation.py	/^def EulerPositionUpdate(Elements, Field, NumOfElements, dt):	$/;"	f
-FieldEuler	mainCode.py	/^	FieldEuler = CalculateField(Elements, Panels)$/;"	v
-FieldRK2	mainCode.py	/^	FieldRK2 = CalculateField(Elements, Panels)$/;"	v
+FetchControlPoints	diffusion.py	/^def FetchControlPoints(Panel):$/;"	f
 FluidElement	elementDefinition.py	/^class FluidElement:$/;"	c
 Graph	mainCode.py	/^Graph = plotInit(SimData.Plotting, Elements)$/;"	v
 InvA	mainCode.py	/^		InvA = matInvAGen(Bound, Panels)$/;"	v
 InvA	mainCode.py	/^InvA = matInvAGen(Bound, Panels);$/;"	v
+NoSlipCondition	diffusion.py	/^def NoSlipCondition(Boundary, field1, field2, length):$/;"	f
+NumOfCP	mainCode.py	/^NumOfCP = len(controlPoints)$/;"	v
+NumOfElements	mainCode.py	/^	NumOfElements = len(Elements)	$/;"	v
 NumOfElements	mainCode.py	/^NumOfElements = len(Elements)$/;"	v
 NumOfPanels	mainCode.py	/^NumOfPanels = len(Bound)-1$/;"	v
+PanelUpdate	mainCode.py	/^def PanelUpdate(Elements, Panels, Bound, InvA):$/;"	f
 Panels	mainCode.py	/^		Panels  = panelGeometry(len(Bound))$/;"	v
-Panels	mainCode.py	/^	Panels = UpdatePanels(Panels, InvA, b);	$/;"	v
+Panels	mainCode.py	/^	Panels = PanelUpdate(Elements, Panels, Bound, InvA)$/;"	v
 Panels	mainCode.py	/^Panels  = panelGeometry(NumOfPanels, Bound)$/;"	v
-Plotting	simulation.py	/^	Plotting = 2$/;"	v	class:simulationParam
+Plotting	simulation.py	/^	Plotting = 0$/;"	v	class:simulationParam
 RKPositionUpdate	simulation.py	/^def RKPositionUpdate(Elements, FieldRK, FieldEuler, NumOfElements, dt):	$/;"	f
 SimData	mainCode.py	/^SimData = simulationParam()$/;"	v
 SimTime	simulation.py	/^	SimTime  = 5$/;"	v	class:simulationParam
@@ -39,9 +44,13 @@ __init__	elementDefinition.py	/^	def __init__(self, loc):$/;"	m	class:Tracer
 __init__	elementDefinition.py	/^	def __init__(self, loc):$/;"	m	class:Uniform
 __init__	elementDefinition.py	/^	def __init__(self, loc):$/;"	m	class:Vortex
 __init__	elementDefinition.py	/^	def __init__(self, loc1, loc2):$/;"	m	class:VortexPanel
-b	mainCode.py	/^	b = matBGen(Elements, Panels, Bound)	$/;"	v
+allElements	mainCode.py	/^	allElements = append(Elements, controlPoints)  $/;"	v
 boundaryCondInit	simulation.py	/^def boundaryCondInit():$/;"	f
-dt	simulation.py	/^	dt       = 0.01$/;"	v	class:simulationParam
+chkSign	diffusion.py	/^def chkSign(p1, p2, X): ### Assume only even partitions else x1 = x2$/;"	f
+controlPoints	mainCode.py	/^	controlPoints = allElements[NumOfElements:]$/;"	v
+controlPoints	mainCode.py	/^controlPoints = FetchControlPoints(Panels)$/;"	v
+delta	elementDefinition.py	/^	delta = 0.2$/;"	v	class:Vortex
+dt	simulation.py	/^	dt       = 0.1$/;"	v	class:simulationParam
 en	elementDefinition.py	/^	en = 0$/;"	v	class:VortexPanel
 fieldValue	elementDefinition.py	/^	def fieldValue(self, target):$/;"	m	class:Tracer
 fieldValue	elementDefinition.py	/^	def fieldValue(self, target):$/;"	m	class:Uniform
@@ -54,14 +63,17 @@ magnitude	elementDefinition.py	/^	def magnitude(self, target):$/;"	m	class:Vorte
 matAValue	elementDefinition.py	/^	def matAValue(self, z):$/;"	m	class:VortexPanel
 matBGen	panelMethod.py	/^def matBGen(Elements, Panels, geometry):$/;"	f
 matInvAGen	panelMethod.py	/^def matInvAGen(geometry, Panels):$/;"	f
+numericalIntegration	mainCode.py	/^def numericalIntegration(allElements, Panels, dt):$/;"	f
 panelGeometry	panelMethod.py	/^def panelGeometry(NoOfPanels, geometry):$/;"	f
 panelPlot	Plotting.py	/^def panelPlot(Panels):$/;"	f
 plotData	Plotting.py	/^def plotData(X, Y, Graph):$/;"	f
 plotInit	Plotting.py	/^def plotInit(Plotting, Elements):$/;"	f
 plotParticles	Plotting.py	/^def plotParticles(Elements, Panels, Graph):$/;"	f
 plotPathLine	Plotting.py	/^def plotPathLine(Elements, Panels, Graph, X, Y):$/;"	f
-plotQuiver	Plotting.py	/^def plotQuiver(fieldValue, graph):$/;"	f
+plotQuiver	Plotting.py	/^def plotQuiver(fieldValue1, fieldValue2, graph, dim, allElements, Panels):$/;"	f
+quiverPlot	simulation.py	/^def quiverPlot():$/;"	f
 radDirection	elementDefinition.py	/^	def radDirection(self, target):$/;"	m	class:FluidElement
+reflect	diffusion.py	/^def reflect(p1, p2, X):$/;"	f
 reinitialize	elementDefinition.py	/^	def reinitialize(self):$/;"	m	class:VortexPanel
 simulationInit	simulation.py	/^def simulationInit():$/;"	f
 simulationParam	simulation.py	/^class simulationParam():$/;"	c
@@ -72,6 +84,8 @@ tanDirection	elementDefinition.py	/^	def tanDirection(self, target):$/;"	m	class
 theta	elementDefinition.py	/^	theta = 0$/;"	v	class:VortexPanel
 update	elementDefinition.py	/^	def update(self):$/;"	m	class:FluidElement
 updatexy	elementDefinition.py	/^	updatexy = xy;$/;"	v	class:FluidElement
+vortexBlobs	mainCode.py	/^	vortexBlobs = DiffuseBlobs(vortexBlobs, SimData.dt, Bound)$/;"	v
+vortexBlobs	mainCode.py	/^	vortexBlobs = NoSlipCondition(Bound, FieldRK2, FieldEuler, NumOfCP)$/;"	v
 xy	elementDefinition.py	/^	xy       = 0;$/;"	v	class:FluidElement
 z1	elementDefinition.py	/^	z1 = 0$/;"	v	class:VortexPanel
 z2	elementDefinition.py	/^	z2 = 0$/;"	v	class:VortexPanel

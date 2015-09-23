@@ -11,9 +11,11 @@ class FluidElement:
 	strength = 1;
 	fixed    = 0;
 	updatexy = xy;
+	lastpos  = 0
 	
 	def update(self):
 		self.xy = self.updatexy
+		self.lastpos = self.xy
 	
 	def radDirection(self, target):
 		if (self.xy == target):
@@ -37,6 +39,7 @@ class Vortex(FluidElement):
 	def __init__(self, loc):
 		self.xy = loc
 		self.updatexy = loc
+		self.lastpos = loc
 
 	def magnitude(self, target):
                 if (self.xy == target):
@@ -60,6 +63,7 @@ class Uniform(FluidElement):
 		self.xy = loc
 		self.updatexy = loc
 		self.fixed = 1
+		self.lastpos = loc
 
 	def magnitude(self, target):
 		return self.strength
@@ -75,6 +79,7 @@ class Tracer(FluidElement):
 		self.updatexy = loc
 		self.strength = 0
 		self.fixed = 0
+		self.lastpos = loc
 
 	def fieldValue(self, target):
 		return 0
