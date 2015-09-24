@@ -1,4 +1,4 @@
-from pylab import arange
+from numpy import arange
 from elementDefinition import *
 from geometryGenerate import *
 
@@ -67,7 +67,7 @@ def boundaryCondInit():
 
 class simulationParam():
 	dt       = 0.1
-	SimTime  = 5
+	SimTime  = 3
 	TimeStep = arange(0, SimTime, dt)
 	Plotting = 0
 	SystemStatic  = 1

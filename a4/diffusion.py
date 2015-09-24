@@ -93,13 +93,13 @@ def DiffuseBlobs(vortexBlobs, time, boundary):
 	sigma = sqrt(2*mu*time)
 	numOfVortexBlobs = len(vortexBlobs)
 	
-	numOfDaughterBlobs = zeros(numOfVortexBlobs)
+	numOfDaughterBlobs = [0 for i in range(numOfVortexBlobs)]
 
-	gammaMax = 0.1
+	gammaMax = 0.1*lambdaLen
 
 	for i in range(numOfVortexBlobs):
 		temp = abs(vortexBlobs[i].strength)/gammaMax/lambdaLen
-		numOfDaughterBlobs[i] = (floor(temp)) + 1
+		numOfDaughterBlobs[i] = int(floor(temp)) + 1
 
 	newNumDaughterBlobs = int(sum(numOfDaughterBlobs) - numOfVortexBlobs)	
 	daughterBlobs = [FluidElement() for i in range(newNumDaughterBlobs)]
@@ -115,14 +115,14 @@ def DiffuseBlobs(vortexBlobs, time, boundary):
 			y = 0
 
 #		print vortexBlobs[i].strength
-		vortexBlobs[i].strength = vortexBlobs[i].strength/int(numOfDaughterBlobs[i])
+		vortexBlobs[i].strength = vortexBlobs[i].strength - gammaMax*(numOfDaughterBlobs[i])
 
-
-		for j in range(int(numOfDaughterBlobs[i]-1)): 
+#		print type(numOfDaughterBlobs[i])
+		for j in range(numOfDaughterBlobs[i]-1): 
 			locationTemp = vortexBlobs[i].xy + x[j] + y[j]
 			locationTemp = CheckReflection(boundary[i], boundary[i+1], locationTemp)
 			daughterBlobs[count] = Vortex(locationTemp)
-			daughterBlobs[count].strength = vortexBlobs[i].strength
+			daughterBlobs[count].strength = gammaMax
 			daughterBlobs[count].delta = vortexBlobs[i].delta
 			count = count + 1
 			

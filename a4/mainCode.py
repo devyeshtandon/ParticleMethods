@@ -1,8 +1,9 @@
-from Plotting import PlotAll, plotInit
+#from Plotting import PlotAll, plotInit
 from simulation import *
 from panelMethod import *
 from diffusion import FetchControlPoints, NoSlipCondition, DiffuseBlobs, CheckReflection
 from numpy import append
+from SavingData import SaveData
 
 Elements = simulationInit()
 #quiverElements = quiverPlot();
@@ -19,7 +20,7 @@ NumOfPanels = len(Bound)-1
 Panels  = panelGeometry(NumOfPanels, Bound)
 InvA = matInvAGen(Bound, Panels);
 
-Graph = plotInit(SimData.Plotting, Elements)
+#Graph = plotInit(SimData.Plotting, Elements)
 
 X = []
 Y = []
@@ -72,7 +73,7 @@ for t in SimData.TimeStep:
 	[i.update() for i in Elements]
 
 
-	PlotAll(Elements, Panels, FieldRK2, FieldEuler, Graph, X, Y, t, SimData.Plotting)
+#	PlotAll(Elements, Panels, FieldRK2, FieldEuler, Graph, X, Y, t, SimData.Plotting)
 
 	print t
 
@@ -88,7 +89,9 @@ for t in SimData.TimeStep:
 
 	controlPoints = FetchControlPoints(Panels)
 
-	PlotAll(Elements, Panels, FieldRK2, FieldEuler, Graph, X, Y, t, SimData.Plotting)
+#	PlotAll(Elements, Panels, FieldRK2, FieldEuler, Graph, X, Y, t, SimData.Plotting)
+	
+	SaveData(Elements)
 	print NumOfElements	
 
 
