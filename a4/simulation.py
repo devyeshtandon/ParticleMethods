@@ -42,7 +42,7 @@ def simulationInit():
         Elements = [FluidElement() for i in range(NumOfElements)]
 
         Elements[0] = Uniform(-10 - 0j)
-        Elements[0].strength = 1
+        Elements[0].strength =1
 
 	return Elements
 

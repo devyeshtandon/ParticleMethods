@@ -16,10 +16,8 @@ def FetchControlPoints(Panel):
 
 	return controlPoint
 
-def NoSlipCondition(Boundary, controlPoints, length, dt):
+def NoSlipCondition(Boundary, controlPoints, dt):
 	dim = len(controlPoints)
-#	print dimi
-#	raw_input()
 	
 	lambdaLen = abs(Boundary[2]-Boundary[1])	
 	deltaVal = lambdaLen/pi
@@ -30,8 +28,7 @@ def NoSlipCondition(Boundary, controlPoints, length, dt):
 		mp = (Boundary[i+1] + Boundary[i])/2
 		er = (Boundary[i+1] - Boundary[i])
 		en = (er)/abs(er)
-		gamma = -(vslip.real*en.real + vslip.imag*en.imag)*lambdaLen
-		print gamma
+		gamma = (vslip.real*en.real + vslip.imag*en.imag)*lambdaLen
 		vortexBlob[i] = Vortex(mp*(abs(mp)+deltaVal)/abs(mp))
 		vortexBlob[i].strength = gamma
 		vortexBlob[i].delta = deltaVal
@@ -77,9 +74,15 @@ def chkSign(p1, p2, X): ### Assume only even partitions else x1 = x2
 	return sign(y-m*x-c)
 
 def CheckReflection(bound1, bound2, location):
+	'''
 	signum = (chkSign(bound1, bound2, 0))
 	if ((chkSign(bound1, bound2, location)) == signum):
 		location =  reflect(bound1, bound2, location)
+	'''
+	if (abs(location)<1):
+		diff = 1-abs(location)
+		location = location*(1+diff)/abs(location)
+
 	return location
 		
 

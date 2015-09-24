@@ -79,13 +79,13 @@ for t in SimData.TimeStep:
 ####### DIFFUSION  ##########################################################################
 	
 	# Generate Vortex Blobs to impose no slip condition
-	vortexBlobs = NoSlipCondition(Bound, controlPoints, NumOfCP, SimData.dt)
+#	vortexBlobs = NoSlipCondition(Bound, controlPoints, SimData.dt)
 
 	# Diffuse blobs using random walk
-	vortexBlobs = DiffuseBlobs(vortexBlobs, SimData.dt, Bound)
+#	vortexBlobs = DiffuseBlobs(vortexBlobs, SimData.dt, Bound)
 
 	# Append Blobs to the elements
-	Elements = append(Elements, vortexBlobs)
+#	Elements = append(Elements, vortexBlobs)
 
 ####### PLOTTING ###########################################################################
 	controlPoints = FetchControlPoints(Panels)
@@ -98,6 +98,6 @@ for t in SimData.TimeStep:
 		plotQuiver(FieldRK2, FieldEuler, Graph, numOfQE, NumOfElements, Panels)
 
 	print NumOfElements	
-	raw_input()
+raw_input()
 
 

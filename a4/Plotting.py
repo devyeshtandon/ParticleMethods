@@ -31,9 +31,8 @@ def plotInit(Plotting, Elements):
 
 	return graph
 
-def plotData(X, Y, Graph):
-	Graph.set_xdata(X)
-	Graph.set_ydata(Y)
+def plotData(X, Y, C):
+	pylab.scatter(X, Y, c=C, s=7)
 	pylab.draw()
 
 def panelPlot(Panels):
@@ -47,15 +46,29 @@ def panelPlot(Panels):
 def plotPathLine(Elements, Panels, Graph, X, Y):
 	X.extend(i.xy.real for i in Elements)
 	Y.extend(i.xy.imag for i in Elements)
-	plotData(X, Y, Graph)	
+	C = gammaColor(Elements)
+	plotData(X, Y, C)	
 	panelPlot(Panels)
 
 def plotParticles(Elements, Panels, Graph):
 
 	X = [i.xy.real for i in Elements]
 	Y = [i.xy.imag for i in Elements]
-	plotData(X, Y, Graph)
+	C = gammaColor(Elements)
+	plotData(X, Y, C)
 	panelPlot(Panels)
+
+def gammaColor(Elements):
+	color = [""]*len(Elements)
+	for i in range(len(Elements)):
+		try:
+			if (Elements[i].strength < 0):
+				color[i] = "r"
+			else:
+				color[i] = "b"
+		except:
+			color[i] = "r"
+	return color
 
 def plotQuiver(fieldValue1, fieldValue2, graph, dim, allElements, Panels):
 	panelPlot(Panels)
