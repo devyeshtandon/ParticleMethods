@@ -91,7 +91,7 @@ for t in SimData.TimeStep:
 
 #	PlotAll(Elements, Panels, FieldRK2, FieldEuler, Graph, X, Y, t, SimData.Plotting)
 	
-	SaveData(Elements)
+	SaveData(Elements, t)
 	print NumOfElements	
 
 

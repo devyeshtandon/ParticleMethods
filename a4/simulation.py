@@ -62,12 +62,12 @@ def quiverPlot():
 	return Elements
 
 def boundaryCondInit():
-	Z = UniformPolygon(41,1)
+	Z = UniformPolygon(60,1)
 	return Z	
 
 class simulationParam():
 	dt       = 0.1
-	SimTime  = 3
+	SimTime  = 5
 	TimeStep = arange(0, SimTime, dt)
 	Plotting = 0
 	SystemStatic  = 1
