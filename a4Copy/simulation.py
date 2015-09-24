@@ -20,21 +20,23 @@ def simulationInit():
 	x = [0]
 	y = [0]
 
-        x = [0.0, -1.0, -1.0]
-        y = [0.8, 1.8, 1.0]
-	gridLength = len(x)
+        x = -2
+        y = arange(-2, 2, 0.1)
+	gridLength = 1
 
-	NumOfElements = gridLength**2 + 1
+	NumOfElements = gridLength + 1
 	
         Elements = [FluidElement() for i in range(NumOfElements)]
 
-	for i in range(gridLength):
-		print x[i]
-		Elements[i] = Tracer(x[i] + y[i]*1.0j)
-		Elements[i].fixed = 0
+#for i in range(gridLength):
 
-        Elements[NumOfElements-1] = Uniform(-10 - 0j)
-        Elements[NumOfElements-1].strength = 5
+	Elements[0] = Vortex(-1.5 + 0j)
+	Elements[0].strength = 5
+
+	Elements[1] = Vortex(-2 + 0j)
+#        Elements[NumOfElements-1] = Uniform(-10 - 0j)
+	Elements[1].strength = 5
+ #       Elements[NumOfElements-1].strength = 5
 
 	return Elements
 
@@ -43,8 +45,8 @@ def boundaryCondInit():
 	return Z	
 
 class simulationParam():
-	dt       = 0.01
-	SimTime  = 5
+	dt       = 0.1
+	SimTime  = 20
 	TimeStep = arange(0, SimTime, dt)
 	Plotting = 1
 	SystemStatic  = 1

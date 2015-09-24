@@ -62,7 +62,7 @@ def quiverPlot():
 	return Elements
 
 def boundaryCondInit():
-	Z = UniformPolygon(40,1)
+	Z = UniformPolygon(41,1)
 	return Z	
 
 class simulationParam():

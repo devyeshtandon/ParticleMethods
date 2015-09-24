@@ -57,6 +57,6 @@ for t in SimData.TimeStep:
 		plotQuiver(FieldRK2, FieldEuler, Graph, NumOfTracers, Panels)
 		
 
-	raw_input()
+raw_input()
 
 

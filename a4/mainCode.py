@@ -1,7 +1,7 @@
 from Plotting import *
 from simulation import *
 from panelMethod import *
-from diffusion import FetchControlPoints, NoSlipCondition, DiffuseBlobs
+from diffusion import FetchControlPoints, NoSlipCondition, DiffuseBlobs, CheckReflection
 from numpy import append
 
 Elements = simulationInit()
@@ -73,19 +73,30 @@ for t in SimData.TimeStep:
 	Elements = allElements[:NumOfElements]
 	controlPoints = allElements[NumOfElements:]
 
+	for i in Elements:
+		i.updatexy = CheckReflection(0, 0, i.updatexy)
+
 	#Update Locations of all the Elements
 	[i.update() for i in Elements]
 
+	if SimData.Plotting == 1:
+                plotPathLine(Elements, Panels, Graph, X, Y)
+	elif SimData.Plotting == 0:
+                plotParticles(Elements, Panels, Graph, t)
+        elif SimData.Plotting == 2:
+                plotQuiver(FieldRK2, FieldEuler, Graph, numOfQE, NumOfElements, Panels)
+
+	print t
 ####### DIFFUSION  ##########################################################################
 	
 	# Generate Vortex Blobs to impose no slip condition
-#	vortexBlobs = NoSlipCondition(Bound, controlPoints, SimData.dt)
+	vortexBlobs = NoSlipCondition(Bound, controlPoints, SimData.dt)
 
 	# Diffuse blobs using random walk
-#	vortexBlobs = DiffuseBlobs(vortexBlobs, SimData.dt, Bound)
+	vortexBlobs = DiffuseBlobs(vortexBlobs, SimData.dt, Bound)
 
 	# Append Blobs to the elements
-#	Elements = append(Elements, vortexBlobs)
+	Elements = append(Elements, vortexBlobs)
 
 ####### PLOTTING ###########################################################################
 	controlPoints = FetchControlPoints(Panels)
@@ -93,11 +104,10 @@ for t in SimData.TimeStep:
 	if SimData.Plotting == 1:
 		plotPathLine(Elements, Panels, Graph, X, Y)
 	elif SimData.Plotting == 0:
-		plotParticles(Elements, Panels, Graph)
+		plotParticles(Elements, Panels, Graph, t)
 	elif SimData.Plotting == 2:
 		plotQuiver(FieldRK2, FieldEuler, Graph, numOfQE, NumOfElements, Panels)
 
 	print NumOfElements	
-raw_input()
 
 

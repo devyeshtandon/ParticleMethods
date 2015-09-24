@@ -31,9 +31,15 @@ def plotInit(Plotting, Elements):
 
 	return graph
 
-def plotData(X, Y, C):
+def plotData(X, Y, C, t):
+
+	pylab.clf()
+	x = 2 
+        pylab.axis([-x,x,x,-x])
 	pylab.scatter(X, Y, c=C, s=7)
+
 	pylab.draw()
+	pylab.savefig(str(100*t)+".png")
 
 def panelPlot(Panels):
 	points = [i.z1 for i in Panels]
@@ -50,12 +56,12 @@ def plotPathLine(Elements, Panels, Graph, X, Y):
 	plotData(X, Y, C)	
 	panelPlot(Panels)
 
-def plotParticles(Elements, Panels, Graph):
+def plotParticles(Elements, Panels, Graph, t):
 
 	X = [i.xy.real for i in Elements]
 	Y = [i.xy.imag for i in Elements]
 	C = gammaColor(Elements)
-	plotData(X, Y, C)
+	plotData(X, Y, C, t)
 	panelPlot(Panels)
 
 def gammaColor(Elements):

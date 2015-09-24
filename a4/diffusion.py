@@ -10,7 +10,7 @@ def FetchControlPoints(Panel):
 	
 	for i in range(numOfPanels):
 		temp = (Panel[i].z1 + Panel[i].z2)/2
-		temp = temp/abs(temp)*1.01
+		temp = temp + temp/abs(temp)*1.0e-6
 		controlPoint[i] = Tracer(temp)
 		controlPoint[i].fixed = 0
 
@@ -21,7 +21,7 @@ def NoSlipCondition(Boundary, controlPoints, dt):
 	
 	lambdaLen = abs(Boundary[2]-Boundary[1])	
 	deltaVal = lambdaLen/pi
-
+#	print deltaVal
 	vortexBlob = [FluidElement() for i in range(dim)]
 	for i in range(dim):
 		vslip = (controlPoints[i].updatexy - controlPoints[i].lastpos)/dt
@@ -87,7 +87,8 @@ def CheckReflection(bound1, bound2, location):
 		
 
 def DiffuseBlobs(vortexBlobs, time, boundary):
-	
+	lambdaLen = abs((boundary[2]-boundary[1]))
+
 	mu = 1.12*1*2/1000
 	sigma = sqrt(2*mu*time)
 	numOfVortexBlobs = len(vortexBlobs)
@@ -97,7 +98,7 @@ def DiffuseBlobs(vortexBlobs, time, boundary):
 	gammaMax = 0.1
 
 	for i in range(numOfVortexBlobs):
-		temp = abs(vortexBlobs[i].strength)/gammaMax 
+		temp = abs(vortexBlobs[i].strength)/gammaMax/lambdaLen
 		numOfDaughterBlobs[i] = (floor(temp)) + 1
 
 	newNumDaughterBlobs = int(sum(numOfDaughterBlobs) - numOfVortexBlobs)	
@@ -107,12 +108,15 @@ def DiffuseBlobs(vortexBlobs, time, boundary):
 
 	for i in range(numOfVortexBlobs):
 		try:
-			x = sigma*random.randn(numOfDaughterBlobs[i])
-			y = sigma*random.randn(numOfDaughterBlobs[i])*1.0j
+			x = random.normal(0, sigma, numOfDaughterBlobs[i])
+			y = random.normal(0, sigma, numOfDaughterBlobs[i])*1.0j
 		except:
 			x = 0
 			y = 0
+
+#		print vortexBlobs[i].strength
 		vortexBlobs[i].strength = vortexBlobs[i].strength/int(numOfDaughterBlobs[i])
+
 
 		for j in range(int(numOfDaughterBlobs[i]-1)): 
 			locationTemp = vortexBlobs[i].xy + x[j] + y[j]
