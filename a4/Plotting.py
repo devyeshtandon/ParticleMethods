@@ -98,3 +98,12 @@ def plotQuiver(fieldValue1, fieldValue2, graph, dim, allElements, Panels):
 
 	graph.set_UVC(U, V)
 	pylab.draw()
+
+def PlotAll(Elements, Panels, FieldRK2, FieldEuler, Graph, X, Y, t, plottingType):
+        if plottingType == 1:
+                plotPathLine(Elements, Panels, Graph, X, Y)
+        elif plottingType == 0:
+                plotParticles(Elements, Panels, Graph, t)
+        elif plottingtype == 2:
+                plotQuiver(FieldRK2, FieldEuler, Graph, numOfQE, NumOfElements, Panels)
+	

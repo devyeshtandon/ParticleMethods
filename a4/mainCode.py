@@ -1,4 +1,4 @@
-from Plotting import *
+from Plotting import PlotAll, plotInit
 from simulation import *
 from panelMethod import *
 from diffusion import FetchControlPoints, NoSlipCondition, DiffuseBlobs, CheckReflection
@@ -21,9 +21,8 @@ InvA = matInvAGen(Bound, Panels);
 
 Graph = plotInit(SimData.Plotting, Elements)
 
-if SimData.Plotting == 1:
-	X = []
-	Y = []
+X = []
+Y = []
 
 controlPoints = FetchControlPoints(Panels)
 NumOfCP = len(controlPoints)
@@ -52,12 +51,6 @@ def PanelUpdate(Elements, Panels, Bound, InvA):
 	return Panels
 
 for t in SimData.TimeStep:	
-
-	if (SimData.SystemStatic == 0):
-		Panels  = panelGeometry(len(Bound))
-		InvA = matInvAGen(Bound, Panels)
-	
-####### ADVECTION ############################################################################
 	
 	NumOfElements = len(Elements)	
 
@@ -65,9 +58,8 @@ for t in SimData.TimeStep:
 	allElements = append(Elements, controlPoints)  
 
 	Panels = PanelUpdate(Elements, Panels, Bound, InvA)
+
 	allElements, FieldRK2, FieldEuler = numericalIntegration(allElements, Panels, SimData.dt)
-
-
 
 	# Remove appended CP with elements
 	Elements = allElements[:NumOfElements]
@@ -79,16 +71,12 @@ for t in SimData.TimeStep:
 	#Update Locations of all the Elements
 	[i.update() for i in Elements]
 
-	if SimData.Plotting == 1:
-                plotPathLine(Elements, Panels, Graph, X, Y)
-	elif SimData.Plotting == 0:
-                plotParticles(Elements, Panels, Graph, t)
-        elif SimData.Plotting == 2:
-                plotQuiver(FieldRK2, FieldEuler, Graph, numOfQE, NumOfElements, Panels)
+
+	PlotAll(Elements, Panels, FieldRK2, FieldEuler, Graph, X, Y, t, SimData.Plotting)
 
 	print t
-####### DIFFUSION  ##########################################################################
-	
+
+
 	# Generate Vortex Blobs to impose no slip condition
 	vortexBlobs = NoSlipCondition(Bound, controlPoints, SimData.dt)
 
@@ -98,16 +86,9 @@ for t in SimData.TimeStep:
 	# Append Blobs to the elements
 	Elements = append(Elements, vortexBlobs)
 
-####### PLOTTING ###########################################################################
 	controlPoints = FetchControlPoints(Panels)
 
-	if SimData.Plotting == 1:
-		plotPathLine(Elements, Panels, Graph, X, Y)
-	elif SimData.Plotting == 0:
-		plotParticles(Elements, Panels, Graph, t)
-	elif SimData.Plotting == 2:
-		plotQuiver(FieldRK2, FieldEuler, Graph, numOfQE, NumOfElements, Panels)
-
+	PlotAll(Elements, Panels, FieldRK2, FieldEuler, Graph, X, Y, t, SimData.Plotting)
 	print NumOfElements	
 
 
