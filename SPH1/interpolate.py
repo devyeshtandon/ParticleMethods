@@ -1,5 +1,5 @@
 from copy import copy
-from numpy import linspace, zeros, arange
+from numpy import linspace, zeros, arange, random
 from kernalDefinitions import Gaussian1D, CubicSpline1D, DerCubicSpline1D, DerGaussian1D
 from numpy import pi, sin
 
@@ -9,7 +9,7 @@ def interpolate1D(x, fnVal, baseSize, var, kernal):
 	interpFn = zeros(len(interpX))
 
 	tempX = linspace(3.0*min(x), 3.0*max(x), 3*numOfX-2)
-	fnValN = sin(pi*tempX) #hack
+	fnValN = sin(2*pi*tempX) + random.random(len(tempX))
 
 	for i in range(len(interpX)):
 		for j in arange(len(tempX)):
