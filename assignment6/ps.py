@@ -42,7 +42,7 @@ def initialize():
 def cVis(P1, P2, h):
 	vab = P1.u - P2.u
 	xab = P1.x - P2.x
-	eta = 0.001;
+	eta = 0.00001;
 	gmm = 1.4
 
 	mu = h*vab*xab/(xab**2 + eta**2)

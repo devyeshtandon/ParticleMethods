@@ -22,7 +22,7 @@ def initialize():
 			rho[i] = 0.25
 			m[i] = 0.0015625
 
-	h  = 2*0.00625
+	h  = 1.1*0.00625
 
 	return [x, p, rho, u, m, h]
 
