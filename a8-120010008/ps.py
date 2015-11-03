@@ -1,4 +1,4 @@
-from  numpy import arange, zeros, concatenate, ones, sqrt
+from  numpy import arange, zeros, concatenate, ones, sqrt, where, asarray, append
 from kernalDefinitions import CubicSpline1D, DerCubicSpline1D
 import matplotlib.pyplot as plt
 
@@ -56,14 +56,27 @@ def cVis(P1, P2, h):
 	return pi
 
 def binning(Pa, h):
-	minDis = 0.0015625;
-	for i in range(400,800):
-		if(minDis>(Pa[i+1].x-Pa[i].x)):
-			minDis = (Pa[i+1].x-Pa[i].x)
+	bins = zeros(len(Pa));
+	temp = Pa[0].x;
+	count  = 0;
+	for i in range(len(Pa)):
+		if (abs(temp-Pa[i].x) > 2*h):
+			count = count + 1	
+			temp = Pa[i].x
+		
+		bins[i] = count
 
-	a = 2.0*h/minDis
-#	return int(round(a)+1)
-	return ;	
+	return bins
+
+def fetchBin(a, bins):
+
+	x = bins[a]
+	l1 = asarray(where(bins == x+1))
+	l1 = append(where(bins == (x)), l1)
+	l1 = append(where(bins == (x-1)), l1)
+	l1 = l1-a
+
+	return [min(l1), max(l1)]
 
 
 def propogate(Pa, h, dt):
@@ -79,10 +92,14 @@ def propogate(Pa, h, dt):
 
 	for i in range(len(Pa)/3):
 		a = i+numPa
-		Wab = Pa[a].x - Pa[a-sR].x 
-		temp = CubicSpline1D(h, float(Wab))	
-		assert(temp <0.001)
-		for j in range(-sR,sR):
+		[l1, l2] = fetchBin(a, sR)
+		Wab = Pa[a].x - Pa[a+l1-1].x 
+		Wab1 = Pa[a].x - Pa[a+l2+1].x 
+		temp = CubicSpline1D(h, float(Wab))		
+		temp += CubicSpline1D(h, float(Wab1))	
+		assert(temp<0.001)
+
+		for j in range(l1,l2):
 			Wab = Pa[a].x - Pa[a+j].x 
 			temp = CubicSpline1D(h, float(Wab))	
 			tempd = DerCubicSpline1D(h, float(Wab))
