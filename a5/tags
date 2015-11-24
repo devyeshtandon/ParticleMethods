@@ -1,0 +1,86 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CalculateField	elementDefinition.py	/^def CalculateField(Elements, Panels):$/;"	f
+CalculateVelocity	node.py	/^def CalculateVelocity(particles, Nodes, tree):$/;"	f
+ComputeCellVelocity	node.py	/^def ComputeCellVelocity(N, i, p, part, tree):$/;"	f
+EulerPositionUpdate	simulation.py	/^def EulerPositionUpdate(Elements, Field, NumOfElements, dt):	$/;"	f
+FluidElement	elementDefinition.py	/^class FluidElement:$/;"	c
+Node	node.py	/^class Node(object):$/;"	c
+NodeMain	node.py	/^def NodeMain(particles):$/;"	f
+PlotAll	Plotting.py	/^def PlotAll(Elements, Panels, FieldRK2, FieldEuler, Graph, X, Y, t, plottingType):$/;"	f
+Plotting	simulation.py	/^	Plotting = 0$/;"	v	class:simulationParam
+RKPositionUpdate	simulation.py	/^def RKPositionUpdate(Elements, FieldRK, FieldEuler, NumOfElements, dt):	$/;"	f
+SimTime	simulation.py	/^	SimTime  = 3$/;"	v	class:simulationParam
+SystemStatic	simulation.py	/^	SystemStatic  = 1$/;"	v	class:simulationParam
+TimeStep	simulation.py	/^	TimeStep = arange(0, SimTime, dt)$/;"	v	class:simulationParam
+Tracer	elementDefinition.py	/^class Tracer(FluidElement):$/;"	c
+Uniform	elementDefinition.py	/^class Uniform(FluidElement):$/;"	c
+UniformPolygon	geometryGenerate.py	/^def UniformPolygon(NumOfSides, Radius):$/;"	f
+Velocity	elementDefinition.py	/^	Velocity = 0$/;"	v	class:FluidElement
+Vortex	elementDefinition.py	/^class Vortex(FluidElement):$/;"	c
+VortexPanel	elementDefinition.py	/^class VortexPanel(FluidElement):$/;"	c
+__init__	elementDefinition.py	/^	def __init__(self, loc):$/;"	m	class:Tracer
+__init__	elementDefinition.py	/^	def __init__(self, loc):$/;"	m	class:Uniform
+__init__	elementDefinition.py	/^	def __init__(self, loc):$/;"	m	class:Vortex
+__init__	elementDefinition.py	/^	def __init__(self, loc1, loc2):$/;"	m	class:VortexPanel
+__init__	node.py	/^	def __init__(self, c, v, idx):$/;"	m	class:Node
+aj	node.py	/^	aj = 0$/;"	v	class:Node
+boundaryCondInit	simulation.py	/^def boundaryCondInit():$/;"	f
+center	node.py	/^	center = 0 + 0j$/;"	v	class:Node
+childGeneration	node.py	/^def childGeneration(N, particles, tree, i):$/;"	f
+combitorial	node.py	/^def combitorial(a, b):$/;"	f
+delta	elementDefinition.py	/^	delta = 1e-3$/;"	v	class:Vortex
+directVelocity	node.py	/^	def directVelocity(self, p, part):$/;"	m	class:Node
+dt	simulation.py	/^	dt       = 0.1$/;"	v	class:simulationParam
+en	elementDefinition.py	/^	en = 0$/;"	v	class:VortexPanel
+fieldValue	elementDefinition.py	/^	def fieldValue(self, target):$/;"	m	class:Tracer
+fieldValue	elementDefinition.py	/^	def fieldValue(self, target):$/;"	m	class:Uniform
+fieldValue	elementDefinition.py	/^	def fieldValue(self, target):$/;"	m	class:Vortex
+fieldValue	elementDefinition.py	/^	def fieldValue(self, z):$/;"	m	class:VortexPanel
+fixed	elementDefinition.py	/^	fixed    = 0;$/;"	v	class:FluidElement
+gammaColor	Plotting.py	/^def gammaColor(Elements):$/;"	f
+index	node.py	/^	index = 0$/;"	v	class:Node
+isInside	node.py	/^def isInside(x, c, v):$/;"	f
+lastpos	elementDefinition.py	/^	lastpos  = 0$/;"	v	class:FluidElement
+length	elementDefinition.py	/^	length = 1;$/;"	v	class:VortexPanel
+magnitude	elementDefinition.py	/^	def magnitude(self, target):$/;"	m	class:Uniform
+magnitude	elementDefinition.py	/^	def magnitude(self, target):$/;"	m	class:Vortex
+matAValue	elementDefinition.py	/^	def matAValue(self, z):$/;"	m	class:VortexPanel
+multipoleEx	node.py	/^	def multipoleEx(self, p):$/;"	m	class:Node
+noOfParticlesInside	node.py	/^def noOfParticlesInside(particles, N):$/;"	f
+noOfTerms	node.py	/^noOfTerms = 3$/;"	v
+panelPlot	Plotting.py	/^def panelPlot(Panels):$/;"	f
+particleIndex	node.py	/^	particleIndex = []$/;"	v	class:Node
+particles	parta.py	/^particles = simulationInit()$/;"	v
+plotBoxes	Plotting.py	/^def plotBoxes(nodes, plt):$/;"	f
+plotData	Plotting.py	/^def plotData(X, Y, C, t):$/;"	f
+plotInit	Plotting.py	/^def plotInit(Plotting, Elements):$/;"	f
+plotParticles	Plotting.py	/^def plotParticles(Elements, Panels, Graph, t):$/;"	f
+plotPathLine	Plotting.py	/^def plotPathLine(Elements, Panels, Graph, X, Y):$/;"	f
+plotQuiver	Plotting.py	/^def plotQuiver(fieldValue1, fieldValue2, graph, dim, allElements, Panels):$/;"	f
+plotQuiver2	Plotting.py	/^def plotQuiver2(part, plt):$/;"	f
+plt	parta.py	/^plt = plotBoxes(nodes, plt)$/;"	v
+plt	parta.py	/^plt = plotQuiver2(particles, plt)$/;"	v
+quiverPlot	simulation.py	/^def quiverPlot():$/;"	f
+radDirection	elementDefinition.py	/^	def radDirection(self, target):$/;"	m	class:FluidElement
+radius	node.py	/^	def radius(self):$/;"	m	class:Node
+reinitialize	elementDefinition.py	/^	def reinitialize(self):$/;"	m	class:VortexPanel
+simulationInit	simulation.py	/^def simulationInit():$/;"	f
+simulationParam	simulation.py	/^class simulationParam():$/;"	c
+strength	elementDefinition.py	/^	strength = 1;$/;"	v	class:FluidElement
+strength	node.py	/^	strength = 0$/;"	v	class:Node
+strength1	elementDefinition.py	/^	strength1 = 1$/;"	v	class:VortexPanel
+strength2	elementDefinition.py	/^	strength2 = 1$/;"	v	class:VortexPanel
+tanDirection	elementDefinition.py	/^	def tanDirection(self, target):$/;"	m	class:FluidElement
+theta	elementDefinition.py	/^	theta = 0$/;"	v	class:VortexPanel
+update	elementDefinition.py	/^	def update(self):$/;"	m	class:FluidElement
+updateLastPos	elementDefinition.py	/^	def updateLastPos(self):$/;"	m	class:FluidElement
+updatexy	elementDefinition.py	/^	updatexy = xy;$/;"	v	class:FluidElement
+vertex	node.py	/^	vertex = 1 - 1j$/;"	v	class:Node
+xy	elementDefinition.py	/^	xy       = 0;$/;"	v	class:FluidElement
+z1	elementDefinition.py	/^	z1 = 0$/;"	v	class:VortexPanel
+z2	elementDefinition.py	/^	z2 = 0$/;"	v	class:VortexPanel

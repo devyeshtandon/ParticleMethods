@@ -12,6 +12,7 @@ class FluidElement:
 	fixed    = 0;
 	updatexy = xy;
 	lastpos  = 0
+	Velocity = 0
 	
 	def update(self):
 		self.xy = self.updatexy
@@ -36,7 +37,7 @@ class FluidElement:
 			return (-RelPosition.imag + RelPosition.real*1j)/distance
 	
 class Vortex(FluidElement):
-	delta = 0.2
+	delta = 1e-3
 
 	def __init__(self, loc):
 		self.xy = loc

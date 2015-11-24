@@ -116,3 +116,19 @@ def plotBoxes(nodes, plt):
 		temp = plt.Rectangle((real(x), imag(x)), 2*imag(c-v), 2*imag(c-v), fill=None)
 		plt.gca().add_patch(temp)
 	return plt
+
+
+def plotQuiver2(part, plt):
+	X = []
+	Y = []
+	U = []
+	V = []
+
+	for i in part:
+		X.append(real(i.xy))
+		Y.append(imag(i.xy))
+		U.append(real(i.velocity))
+		V.append(imag(i.velocity))
+
+	plt.quiver(X, Y, U, V)
+	return plt
