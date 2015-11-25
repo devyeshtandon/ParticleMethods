@@ -1,0 +1,180 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+Bound	mainCode.py	/^Bound   = boundaryCondInit()$/;"	v
+CalculateField	elementDefinition.py	/^def CalculateField(Elements, Panels):$/;"	f
+CalculateFieldE	elementDefinition.py	/^def CalculateFieldE(Elements, X):$/;"	f
+CalculateVelocity	node.py	/^def CalculateVelocity(particles, Nodes, tree):$/;"	f
+CalculateVelocity	nodeN2.py	/^def CalculateVelocity(particles, Nodes, tree):$/;"	f
+CalculateVelocity	nodeNlogN.py	/^def CalculateVelocity(particles, Nodes, tree):$/;"	f
+CheckReflection	diffusion.py	/^def CheckReflection(bound1, bound2, location):$/;"	f
+ComputeCellVelocity	node.py	/^def ComputeCellVelocity(N, i, p, part, tree):$/;"	f
+ComputeCellVelocity	nodeN2.py	/^def ComputeCellVelocity(N, i, p, part, tree):$/;"	f
+ComputeCellVelocity	nodeNlogN.py	/^def ComputeCellVelocity(N, i, p, part, tree):$/;"	f
+DiffuseBlobs	diffusion.py	/^def DiffuseBlobs(vortexBlobs, time, boundary):$/;"	f
+Elements	mainCode.py	/^	Elements = allElements[:NumOfElements]$/;"	v
+Elements	mainCode.py	/^	Elements = append(Elements, vortexBlobs)$/;"	v
+Elements	mainCode.py	/^Elements = append(quiverElements, Elements)$/;"	v
+Elements	mainCode.py	/^Elements = simulationInit()$/;"	v
+EulerPositionUpdate	simulation.py	/^def EulerPositionUpdate(Elements, NumOfElements, dt):	$/;"	f
+FetchControlPoints	diffusion.py	/^def FetchControlPoints(Panel):$/;"	f
+FluidElement	elementDefinition.py	/^class FluidElement:$/;"	c
+InvA	mainCode.py	/^InvA = matInvAGen(Bound, Panels);$/;"	v
+NoSlipCondition	diffusion.py	/^def NoSlipCondition(Boundary, controlPoints, dt):$/;"	f
+Node	node.py	/^class Node(object):$/;"	c
+Node	nodeN2.py	/^class Node(object):$/;"	c
+Node	nodeNlogN.py	/^class Node(object):$/;"	c
+NodeMain	node.py	/^def NodeMain(particles):$/;"	f
+NodeMain	nodeN2.py	/^def NodeMain(particles):$/;"	f
+NodeMain	nodeNlogN.py	/^def NodeMain(particles):$/;"	f
+NumOfCP	mainCode.py	/^NumOfCP = len(controlPoints)$/;"	v
+NumOfElements	mainCode.py	/^	NumOfElements = len(Elements)	$/;"	v
+NumOfElements	mainCode.py	/^NumOfElements = len(Elements)$/;"	v
+NumOfPanels	mainCode.py	/^NumOfPanels = len(Bound)-1$/;"	v
+PanelUpdate	mainCode.py	/^def PanelUpdate(Elements, Panels, Bound, InvA):$/;"	f
+Panels	mainCode.py	/^	Panels = PanelUpdate(Elements, Panels, Bound, InvA)$/;"	v
+Panels	mainCode.py	/^Panels  = panelGeometry(NumOfPanels, Bound)$/;"	v
+PlotAll	Plotting.py	/^def PlotAll(Elements, Panels, FieldRK2, FieldEuler, Graph, X, Y, t, plottingType):$/;"	f
+Plotting	simulation.py	/^	Plotting = 0$/;"	v	class:simulationParam
+RKPositionUpdate	simulation.py	/^def RKPositionUpdate(Elements, FieldEuler, NumOfElements, dt):	$/;"	f
+SaveData	SavingData.py	/^def SaveData(Elements, t, count):$/;"	f
+SimData	mainCode.py	/^SimData = simulationParam()$/;"	v
+SimTime	simulation.py	/^	SimTime  = 3$/;"	v	class:simulationParam
+SystemStatic	simulation.py	/^	SystemStatic  = 1$/;"	v	class:simulationParam
+TimeStep	simulation.py	/^	TimeStep = arange(0, SimTime, dt)$/;"	v	class:simulationParam
+Tracer	elementDefinition.py	/^class Tracer(FluidElement):$/;"	c
+U	PlotSavedData.py	/^	U = U.transpose()$/;"	v
+U	PlotSavedData.py	/^	U = asarray(u).reshape(shape(X))$/;"	v
+Uniform	elementDefinition.py	/^class Uniform(FluidElement):$/;"	c
+UniformPolygon	geometryGenerate.py	/^def UniformPolygon(NumOfSides, Radius):$/;"	f
+UpdatePanels	panelMethod.py	/^def UpdatePanels(Panels, InvA, b):$/;"	f
+V	PlotSavedData.py	/^	V = V.transpose()$/;"	v
+V	PlotSavedData.py	/^	V = asarray(v).reshape(shape(Y))$/;"	v
+Vortex	elementDefinition.py	/^class Vortex(FluidElement):$/;"	c
+VortexPanel	elementDefinition.py	/^class VortexPanel(FluidElement):$/;"	c
+X	mainCode.py	/^X = []$/;"	v
+Y	mainCode.py	/^Y = []$/;"	v
+__init__	elementDefinition.py	/^	def __init__(self, loc):$/;"	m	class:Tracer
+__init__	elementDefinition.py	/^	def __init__(self, loc):$/;"	m	class:Uniform
+__init__	elementDefinition.py	/^	def __init__(self, loc):$/;"	m	class:Vortex
+__init__	elementDefinition.py	/^	def __init__(self, loc1, loc2):$/;"	m	class:VortexPanel
+__init__	node.py	/^	def __init__(self, c, v, idx):$/;"	m	class:Node
+__init__	nodeN2.py	/^	def __init__(self, c, v, idx):$/;"	m	class:Node
+__init__	nodeNlogN.py	/^	def __init__(self, c, v, idx):$/;"	m	class:Node
+aj	node.py	/^	aj = 0$/;"	v	class:Node
+aj	nodeN2.py	/^	aj = 0$/;"	v	class:Node
+aj	nodeNlogN.py	/^	aj = 0$/;"	v	class:Node
+allElements	mainCode.py	/^	allElements = append(Elements, controlPoints)  $/;"	v
+allElements	mainCode.py	/^	allElements = numericalIntegration(allElements, Panels, SimData.dt)$/;"	v
+array	PlotSavedData.py	/^	array = loadtxt(i).view(complex).reshape(-1)$/;"	v
+boundaryCondInit	simulation.py	/^def boundaryCondInit():$/;"	f
+cd	mainCode.py	/^cd = []$/;"	v
+cdCalculate	diffusion.py	/^def cdCalculate(Elements):$/;"	f
+center	node.py	/^	center = 0 + 0j$/;"	v	class:Node
+center	nodeN2.py	/^	center = 0 + 0j$/;"	v	class:Node
+center	nodeNlogN.py	/^	center = 0 + 0j$/;"	v	class:Node
+childGeneration	node.py	/^def childGeneration(N, particles, tree, i):$/;"	f
+childGeneration	nodeN2.py	/^def childGeneration(N, particles, tree, i):$/;"	f
+childGeneration	nodeNlogN.py	/^def childGeneration(N, particles, tree, i):$/;"	f
+chkSign	diffusion.py	/^def chkSign(p1, p2, X): ### Assume only even partitions else x1 = x2$/;"	f
+cm	PlotSavedData.py	/^cm = []$/;"	v
+combitorial	node.py	/^def combitorial(a, b):$/;"	f
+combitorial	nodeN2.py	/^def combitorial(a, b):$/;"	f
+combitorial	nodeNlogN.py	/^def combitorial(a, b):$/;"	f
+controlPoints	mainCode.py	/^	controlPoints = FetchControlPoints(Panels)$/;"	v
+controlPoints	mainCode.py	/^	controlPoints = allElements[NumOfElements:]$/;"	v
+controlPoints	mainCode.py	/^controlPoints = FetchControlPoints(Panels)$/;"	v
+controlPoints	mainCode.py	/^controlPoints = []$/;"	v
+counter	PlotSavedData.py	/^counter = 0$/;"	v
+delta	elementDefinition.py	/^	delta = 1e-3$/;"	v	class:Vortex
+directVelocity	node.py	/^	def directVelocity(self, p, part):$/;"	m	class:Node
+directVelocity	nodeN2.py	/^	def directVelocity(self, p, part):$/;"	m	class:Node
+directVelocity	nodeNlogN.py	/^	def directVelocity(self, p, part):$/;"	m	class:Node
+dt	simulation.py	/^	dt       = 0.1$/;"	v	class:simulationParam
+en	elementDefinition.py	/^	en = 0$/;"	v	class:VortexPanel
+fieldValue	elementDefinition.py	/^	def fieldValue(self, target):$/;"	m	class:Tracer
+fieldValue	elementDefinition.py	/^	def fieldValue(self, target):$/;"	m	class:Uniform
+fieldValue	elementDefinition.py	/^	def fieldValue(self, target):$/;"	m	class:Vortex
+fieldValue	elementDefinition.py	/^	def fieldValue(self, z):$/;"	m	class:VortexPanel
+fixed	elementDefinition.py	/^	fixed    = 0;$/;"	v	class:FluidElement
+gammaColor	Plotting.py	/^def gammaColor(Elements):$/;"	f
+index	node.py	/^	index = 0$/;"	v	class:Node
+index	nodeN2.py	/^	index = 0$/;"	v	class:Node
+index	nodeNlogN.py	/^	index = 0$/;"	v	class:Node
+isInside	node.py	/^def isInside(x, c, v):$/;"	f
+isInside	nodeN2.py	/^def isInside(x, c, v):$/;"	f
+isInside	nodeNlogN.py	/^def isInside(x, c, v):$/;"	f
+lastpos	elementDefinition.py	/^	lastpos  = 0$/;"	v	class:FluidElement
+length	elementDefinition.py	/^	length = 1;$/;"	v	class:VortexPanel
+magnitude	elementDefinition.py	/^	def magnitude(self, target):$/;"	m	class:Uniform
+magnitude	elementDefinition.py	/^	def magnitude(self, target):$/;"	m	class:Vortex
+matAValue	elementDefinition.py	/^	def matAValue(self, z):$/;"	m	class:VortexPanel
+matBGen	panelMethod.py	/^def matBGen(Elements, Panels, geometry):$/;"	f
+matInvAGen	panelMethod.py	/^def matInvAGen(geometry, Panels):$/;"	f
+multipoleEx	node.py	/^	def multipoleEx(self, p):$/;"	m	class:Node
+multipoleEx	nodeN2.py	/^	def multipoleEx(self, p):$/;"	m	class:Node
+multipoleEx	nodeNlogN.py	/^	def multipoleEx(self, p):$/;"	m	class:Node
+nm	PlotSavedData.py	/^nm = []$/;"	v
+noOfParticlesInside	node.py	/^def noOfParticlesInside(particles, N):$/;"	f
+noOfParticlesInside	nodeN2.py	/^def noOfParticlesInside(particles, N):$/;"	f
+noOfParticlesInside	nodeNlogN.py	/^def noOfParticlesInside(particles, N):$/;"	f
+noOfTerms	node.py	/^noOfTerms = 15$/;"	v
+noOfTerms	nodeN2.py	/^noOfTerms = 10$/;"	v
+noOfTerms	nodeNlogN.py	/^noOfTerms = 10$/;"	v
+numOfQE	mainCode.py	/^numOfQE = len(quiverElements)$/;"	v
+numericalIntegration	mainCode.py	/^def numericalIntegration(allElements, Panels, dt):$/;"	f
+panelGeometry	panelMethod.py	/^def panelGeometry(NoOfPanels, geometry):$/;"	f
+panelPlot	Plotting.py	/^def panelPlot(Panels):$/;"	f
+particleIndex	node.py	/^	particleIndex = []$/;"	v	class:Node
+particleIndex	nodeN2.py	/^	particleIndex = []$/;"	v	class:Node
+particleIndex	nodeNlogN.py	/^	particleIndex = []$/;"	v	class:Node
+particles	N2.py	/^particles = simulationInit()$/;"	v
+particles	NlogN.py	/^particles = simulationInit()$/;"	v
+particles	parta.py	/^particles = simulationInit()$/;"	v
+plotBoxes	Plotting.py	/^def plotBoxes(nodes, plt):$/;"	f
+plotData	Plotting.py	/^def plotData(X, Y, C, t):$/;"	f
+plotInit	Plotting.py	/^def plotInit(Plotting, Elements):$/;"	f
+plotParticles	Plotting.py	/^def plotParticles(Elements, Panels, Graph, t):$/;"	f
+plotPathLine	Plotting.py	/^def plotPathLine(Elements, Panels, Graph, X, Y):$/;"	f
+plotQuiver	Plotting.py	/^def plotQuiver(fieldValue1, fieldValue2, graph, dim, allElements, Panels):$/;"	f
+plotQuiver2	Plotting.py	/^def plotQuiver2(part, plt):$/;"	f
+plt	parta.py	/^plt = plotBoxes(nodes, plt)$/;"	v
+plt	parta.py	/^plt = plotQuiver2(particles, plt)$/;"	v
+quiverElements	mainCode.py	/^quiverElements = quiverPlot()$/;"	v
+quiverPlot	simulation.py	/^def quiverPlot():$/;"	f
+radDirection	elementDefinition.py	/^	def radDirection(self, target):$/;"	m	class:FluidElement
+radius	node.py	/^	def radius(self):$/;"	m	class:Node
+radius	nodeN2.py	/^	def radius(self):$/;"	m	class:Node
+radius	nodeNlogN.py	/^	def radius(self):$/;"	m	class:Node
+reflect	diffusion.py	/^def reflect(p1, p2, X):$/;"	f
+reinitialize	elementDefinition.py	/^	def reinitialize(self):$/;"	m	class:VortexPanel
+simulationInit	simulation.py	/^def simulationInit():$/;"	f
+simulationParam	simulation.py	/^class simulationParam():$/;"	c
+strength	elementDefinition.py	/^	strength = 1;$/;"	v	class:FluidElement
+strength	node.py	/^	strength = 0$/;"	v	class:Node
+strength	nodeN2.py	/^	strength = 0$/;"	v	class:Node
+strength	nodeNlogN.py	/^	strength = 0$/;"	v	class:Node
+strength1	elementDefinition.py	/^	strength1 = 1$/;"	v	class:VortexPanel
+strength2	elementDefinition.py	/^	strength2 = 1$/;"	v	class:VortexPanel
+sv	PlotSavedData.py	/^sv = []$/;"	v
+tanDirection	elementDefinition.py	/^	def tanDirection(self, target):$/;"	m	class:FluidElement
+theta	elementDefinition.py	/^	theta = 0$/;"	v	class:VortexPanel
+u	PlotSavedData.py	/^	u = [j.real for j in array]$/;"	v
+update	elementDefinition.py	/^	def update(self):$/;"	m	class:FluidElement
+updateLastPos	elementDefinition.py	/^	def updateLastPos(self):$/;"	m	class:FluidElement
+updatexy	elementDefinition.py	/^	updatexy = xy;$/;"	v	class:FluidElement
+v	PlotSavedData.py	/^	v = [j.imag for j in array]$/;"	v
+velocity	elementDefinition.py	/^	velocity = 0$/;"	v	class:FluidElement
+vertex	node.py	/^	vertex = 1 - 1j$/;"	v	class:Node
+vertex	nodeN2.py	/^	vertex = 1 - 1j$/;"	v	class:Node
+vertex	nodeNlogN.py	/^	vertex = 1 - 1j$/;"	v	class:Node
+vortexBlobs	mainCode.py	/^	vortexBlobs = DiffuseBlobs(vortexBlobs, SimData.dt, Bound)$/;"	v
+vortexBlobs	mainCode.py	/^	vortexBlobs = NoSlipCondition(Bound, controlPoints, SimData.dt)$/;"	v
+x	PlotSavedData.py	/^x = arange(-2, 2, 0.2)$/;"	v
+xy	elementDefinition.py	/^	xy       = 0;$/;"	v	class:FluidElement
+y	PlotSavedData.py	/^y = arange(-2, 2, 0.2)$/;"	v
+z1	elementDefinition.py	/^	z1 = 0$/;"	v	class:VortexPanel
+z2	elementDefinition.py	/^	z2 = 0$/;"	v	class:VortexPanel
