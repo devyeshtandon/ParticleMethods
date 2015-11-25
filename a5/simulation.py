@@ -5,7 +5,9 @@ import random
 
 def simulationInit():
 #	'''
-        NumOfElements = 10
+#        NumOfElements = 10
+#	NumOfElements = input()
+        NumOfElements = 1000
         x = [random.uniform(-2,2) for i in range(NumOfElements)]
         y = [random.uniform(-2,2) for i in range(NumOfElements)]
         Elements = [FluidElement() for i in range(NumOfElements)]
@@ -14,13 +16,13 @@ def simulationInit():
 	        Elements[i] = Vortex(complex(x[i],y[i]))
         	Elements[i].strength = 1
 	'''
-        Elements = [FluidElement() for i in range(2)]
-#	Elements[0] = Vortex(0.5j+0.5)
+        Elements = [FluidElement() for i in range(6)]
+	Elements[5] = Vortex(0.5j+0.5)
 	Elements[1] = Vortex(1j-1)
-	Elements[0] = Vortex(-1j+1)
-#	Elements[3] = Vortex(-1j-1)
-#	Elements[0] = Vortex(1.5j+1.5)
-#	Elements[4] = Vortex(-1.6j-1.5)
+	Elements[2] = Vortex(-1j+1)
+	Elements[3] = Vortex(-1j-1)
+	Elements[0] = Vortex(1.5j+1.5)
+	Elements[4] = Vortex(-1.6j-1.5)
 #	'''
 	return Elements
 

@@ -12,7 +12,7 @@ class FluidElement:
 	fixed    = 0;
 	updatexy = xy;
 	lastpos  = 0
-	Velocity = 0
+	velocity = 0
 	
 	def update(self):
 		self.xy = self.updatexy
@@ -130,19 +130,27 @@ class VortexPanel(FluidElement):
 		self.strength2 = 1
 
 def CalculateField(Elements, Panels):
-	NumOfElements = len(Elements)
-	Targets = [Elements[i].xy for i in range(NumOfElements)]
+        NumOfElements = len(Elements)
+        Targets = [Elements[i].xy for i in range(NumOfElements)]
 
-	Field = [[complex(0) for x in range(NumOfElements)] for x in range(NumOfElements)]
+        for i in range(NumOfElements):
+                if Elements[i].strength != 0:
+                        for j in range(NumOfElements):
+                                Elements[i].velocity += Elements[j].fieldValue(Elements[i].xy)
 
-	for i in range(NumOfElements):
-		if Elements[i].strength != 0:
-			Field[i][:] = [(Elements[i].fieldValue(j)) for j in Targets]
-	
-	NumOfPanels = len(Panels)
-	for i in range(NumOfElements):
-		for j in range(NumOfPanels):
-			Field[0][i] += (Panels[j].fieldValue(Elements[i].xy))
+        NumOfPanels = len(Panels)
+        for i in range(NumOfElements):
+                for j in range(NumOfPanels):
+                        Elements[i].velocity += (Panels[j].fieldValue(Elements[i].xy))
 
-	return Field
+        return Elements
 
+def CalculateFieldE(Elements):
+        NumOfElements = len(Elements)
+        Targets = [Elements[i].xy for i in range(NumOfElements)]
+
+        for i in range(NumOfElements):
+                if Elements[i].strength != 0:
+                        for j in range(NumOfElements):
+                                Elements[i].velocity += Elements[j].fieldValue(Elements[i].xy)
+	return Elements

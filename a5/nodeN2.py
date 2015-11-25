@@ -115,18 +115,19 @@ def CalculateVelocity(particles, Nodes, tree):
 def NodeMain(particles):
 	N = []
 	tree = [[]]
-	initC = 0
-	initV = 2 - 2j
-	N.append(Node(initC, initV, 0))
-	childGeneration(N, particles, tree, 0)
-	CalculateVelocity(particles, N, tree)
-	temp = zeros(len(particles))*1j
-	for i in range(len(particles)):
-		temp[i] = particles[i].velocity
-		particles[i].velocity = 0
+#	initC = 0
+#	initV = 2 - 2j
+#	N.append(Node(initC, initV, 0))
+#	childGeneration(N, particles, tree, 0)
+#	CalculateVelocity(particles, N, tree)
+#	temp = zeros(len(particles))*1j
+#	for i in range(len(particles)):
+#		temp[i] = particles[i].velocity
+#		particles[i].velocity = 0
 	CalculateFieldE(particles)
-	error = zeros(len(particles))*1j
-	for i in range(len(particles)):
-		error[i] = temp[i] - particles[i].velocity
-	print linalg.norm(error)
+#	error = zeros(len(particles))*1j
+#	for i in range(len(particles)):
+#		error[i] = temp[i] - particles[i].velocity
+
+#	print linalg.norm(error)
 	return N, tree
